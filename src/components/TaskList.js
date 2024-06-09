@@ -1,16 +1,18 @@
 // TaskList.js
 import React from 'react';
-import TaskItem from './TaskItem';
+import Task from './Task';
 
-function TaskList({ tasks, onDelete, onToggle }) {
-  const sortedTasks = [...tasks].sort((a, b) => a.priority - b.priority);
+function TaskList({ tasks, onDelete, onToggle, filterCategory }) {
+  const filteredTasks = filterCategory
+    ? tasks.filter((task) => task.category === filterCategory)
+    : tasks;
 
   return (
-    <>
-      {sortedTasks.map((task) => (
-        <TaskItem key={task.id} task={task} onDelete={onDelete} onToggle={onToggle} />
+    <div>
+      {filteredTasks.map((task) => (
+        <Task key={task.id} task={task} onDelete={onDelete} onToggle={onToggle} />
       ))}
-    </>
+    </div>
   );
 }
 
