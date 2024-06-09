@@ -5,6 +5,7 @@ function AddTaskForm({ onAdd }) {
   const [text, setText] = React.useState('');
   const [day, setDay] = React.useState('');
   const [priority, setPriority] = React.useState('');
+  const [category, setCategory] = React.useState('');
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -14,11 +15,12 @@ function AddTaskForm({ onAdd }) {
       return;
     }
 
-    onAdd({ text, day, priority });
+    onAdd({ text, day, priority, category });
 
     setText('');
     setDay('');
     setPriority('');
+    setCategory('');
   };
 
   return (
@@ -40,6 +42,12 @@ function AddTaskForm({ onAdd }) {
         placeholder="Priority"
         value={priority}
         onChange={(e) => setPriority(e.target.value)}
+      />
+      <input
+        type="text"
+        placeholder="Category"
+        value={category}
+        onChange={(e) => setCategory(e.target.value)}
       />
       <input type="submit" value="Save Task" />
     </form>
