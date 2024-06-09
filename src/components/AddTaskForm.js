@@ -8,6 +8,11 @@ function AddTaskForm({ onAdd }) {
   const onSubmit = (e) => {
     e.preventDefault();
 
+    if (!text) {
+      alert('Please add a task');
+      return;
+    }
+
     onAdd({ text, day });
 
     setText('');
